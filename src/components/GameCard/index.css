@@ -1,0 +1,26 @@
+.game-card img{
+    max-height: 70px;
+}
+
+.logo-team{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content h4{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.content p{
+    font-weight: 300;
+    font-size: 10px;
+}

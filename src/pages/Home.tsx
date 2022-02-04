@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
+import { connect, useSelector } from 'react-redux'
+
 import { Card } from '../components/Card'
 import { DashboardSection } from '../components/DashboardSection'
-
 import { Footer } from '../components/Footer/index'
 import { GameCard } from '../components/GameCard'
-
 
 import '../styles/Home.css'
 
@@ -35,14 +35,22 @@ const games = [
 const teamsUrl = [
     'https://upload.wikimedia.org\/wikipedia\/en\/0\/02\/Washington_Wizards_logo.svg',
     'https://upload.wikimedia.org\/wikipedia\/en\/c\/c4\/Charlotte_Hornets_%282014%29.svg',
-    'https://upload.wikimedia.org\/wikipedia\/en\/2\/24\/Atlanta_Hawks_logo.svg'
+    'https://upload.wikimedia.org\/wikipedia\/en\/2\/24\/Atlanta_Hawks_logo.svg',
+    'https://upload.wikimedia.org\/wikipedia\/en\/f\/fb\/Miami_Heat_logo.svg',
+    'https://upload.wikimedia.org\/wikipedia\/en\/1\/10\/Orlando_Magic_logo.svg',
+    'https://upload.wikimedia.org\/wikipedia\/en\/2\/25\/New_York_Knicks_logo.svg'
 ]
 
-export function Home(){
+export default function Home() {
 
     const [allTeams, setAllTeams] = useState<string[][]>([])
 
+    const reduxTeams = useSelector( state => state)
+
     useEffect(() => {
+
+        console.log(reduxTeams)
+
         const result = filterArray(teamsUrl, 3)
         setAllTeams(result)
     }, [])

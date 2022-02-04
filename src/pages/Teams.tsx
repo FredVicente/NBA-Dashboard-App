@@ -2,7 +2,7 @@ import { Footer } from '../components/Footer/index'
 
 import '../styles/Teams.css'
 
-export function Teams(){
+export default function Teams(){
     return(
         <div className="teams">
             <div>Teams</div>

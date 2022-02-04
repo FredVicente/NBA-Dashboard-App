@@ -1,8 +1,10 @@
 import { Footer } from '../components/Footer/index'
 
 import '../styles/Games.css'
+import { useEffect } from 'react'
 
-export function Games(){
+function Games(){
+
     return(
         <div className="games">
             <div>Games</div>
@@ -10,3 +12,5 @@ export function Games(){
         </div>
     )
 }
+
+export default Games

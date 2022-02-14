@@ -10,44 +10,47 @@ export function Footer(props:{page:aceptedPages}){
 
     const navigate = useNavigate()
 
+    const itemMenu = [
+        {
+            name: 'home',
+            url: '/home',
+            label: 'Home',
+            icon: <IconHome />
+        },
+        {
+            name: 'games',
+            url: '/games',
+            label: 'Jogos',
+            icon: <IconGames />
+        },
+        {
+            name: 'teams',
+            url: '/teams',
+            label: 'Times',
+            icon: <IconTeams />
+        },
+        {
+            name: 'players',
+            url: '/players',
+            label: 'Atletas',
+            icon: <IconPlayers />
+        }
+    ]
+ 
     return(
         <footer className='myFooter'>
-            <div 
-                className={`menu-option-container ${props.page == 'home' ? 'selected-menu-option' : ''}`}
-                onClick={() => {
-                    navigate('/home')
-                }}
-            >
-                <IconHome />
-                <p className="menu-text">Home</p>
-            </div>
-            <div 
-                className={`menu-option-container ${props.page == 'games' ? 'selected-menu-option' : ''}`}
-                onClick={() => {
-                    navigate('/games')
-                }}
-            >
-                <IconGames />
-                <p className="menu-text">Jogos</p>
-            </div>
-            <div 
-                className={`menu-option-container ${props.page == 'teams' ? 'selected-menu-option' : ''}`}
-                onClick={() => {
-                    navigate('/teams')
-                }}
-            >
-                <IconTeams />
-                <p className="menu-text">Times</p>
-            </div>
-            <div 
-                className={`menu-option-container ${props.page == 'players' ? 'selected-menu-option' : ''}`}
-                onClick={() => {
-                    navigate('/players')
-                }}
-            >
-                <IconPlayers />
-                <p className="menu-text">Atletas</p>
-            </div>
+            {itemMenu.map(item => (
+                <div 
+                    key={item.name}
+                    className={`menu-option-container ${props.page == item.name && 'selected-menu-option'}`}
+                    onClick={() => {
+                        navigate(item.url)
+                    }}
+                >
+                    {item.icon}
+                    <p className="menu-text">{item.label}</p>
+                </div>
+            ))}
         </footer>
     )
 }

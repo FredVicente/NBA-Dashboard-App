@@ -1,0 +1,50 @@
+.initial{
+    background-color: black;
+}
+
+.initial-container{
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+}
+
+.initial-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 40vh;
+}
+
+.initial-top img{
+    max-height: 200px;
+}
+
+.initial-bottom{
+    position: relative;
+    height: 60vh;
+
+    display: flex;
+    justify-content: center;
+}
+
+.initial-bottom button{
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+.initial-bottom img{
+    max-height: 100%;
+    max-width: 100%;
+}

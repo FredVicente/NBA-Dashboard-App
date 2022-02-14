@@ -1,44 +1,32 @@
 import { createStore } from 'redux'
 
+import { stateType } from '../types/index'
+
 type ActionType = {
-    type:string
-    teams:{
-        "TeamID":number
-        "Key":string
-        "Active":boolean
-        "City":string
-        "Name":string
-        "LeagueID":number
-        "StadiumID":number
-        "Conference":string
-        "Division":string
-        "PrimaryColor":string
-        "SecondaryColor":string
-        "TertiaryColor":string
-        "QuaternaryColor":string
-        "WikipediaLogoUrl":string
-        "WikipediaWordMarkUrl":boolean
-        "GlobalTeamID":number
-        "NbaDotComTeamID":number
-    }[]
+    type: string
+    value: object[]
 }
 
-const reducer = async (state = {}, action:ActionType) => {
-
-    console.log(action.teams)
-
-    console.log(state)
-
-    /*switch(action.type){
+const reducer = (state:stateType = {
+    teams:[],
+    games:[],
+    stadiums:[],
+    players:[]
+}, action: ActionType) => {
+    switch(action.type){
         case 'FETCH_TEAMS':
-            return action.teams
+            return {...state, teams:action.value}
+        case 'FETCH_GAMES':
+            return {...state, games:action.value}
+        case 'FETCH_STADIUMS':
+            return {...state, stadiums:action.value}
+        case 'FETCH_PLAYERS':
+            return {...state, players:action.value}
         default:
             return state
-    }*/
-
-    return action.teams
+    }
 }
 
-const store = createStore(reducer)
+const store = createStore(reducer as any);
 
-export default store
+export default store;

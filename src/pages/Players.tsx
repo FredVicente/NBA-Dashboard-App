@@ -1,49 +1,32 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import IndividualCard from '../components/cards/IndividualCard'
-import { Footer } from '../components/Footer/index'
-import Header from '../components/Header'
+import DefaultPage from '../components/DefaultPage'
 
-import { playersType, stateType } from '../types'
+import { DefaultPageDataType, stateType } from '../types'
 
 export default function Players(){
 
     const reduxState:stateType = useSelector( state => state)
 
-    const [searchedPlayer, setSearchedPlayer] = useState('')
-    const [allPlayers, setAllPlayers] = useState<playersType>()
+    const [defaultPlayers, setDefaultPlayers] = useState<DefaultPageDataType>([])
 
     useEffect(() => {
-        const filteredPlayers:playersType = reduxState.players.filter( entry => `${entry.FirstName} ${entry.LastName}`.toLocaleLowerCase().includes(searchedPlayer.toLocaleLowerCase()))
-        setAllPlayers(filteredPlayers)
-    }, [searchedPlayer])
+        const allPlayers = reduxState.players.map( player => {
+            return{
+                name:player.FirstName + ' ' + player.LastName,
+                imgUrl:player.PhotoUrl
+            }
+        })
+
+        setDefaultPlayers(allPlayers)
+    }, [])
 
     return(
-        <div className="players page">
-            <Header lastPage='home' title='JOGADORES'/>
-            <main>
-                <div className="input-container">
-                    <input
-                        type="text"
-                        placeholder='Procure um jogador'
-                        onChange={(e) => {setSearchedPlayer(e.target.value)}}
-                        value={searchedPlayer}
-                    />
-                </div>
-                <div className="cards-container">
-                    {allPlayers?.slice(0, 30).map( player => {
-                        return (
-                            <IndividualCard
-                                name={player.FirstName + ' ' + player.LastName}
-                                imgUrl={player.PhotoUrl}
-                                info='player'
-                            />
-                        )
-                    })}
-                </div>
-            </main>
-            <Footer page ='players'/>
-        </div>
+        <DefaultPage
+            info="players"
+            originalData={defaultPlayers}
+            inputPlaceholder="Procure um jogador"
+        />
     )
 }

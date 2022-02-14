@@ -25,8 +25,6 @@ function Games(){
     useEffect(() => {
         const fetchGames = async () => {
 
-            console.log(date)
-
             const splitedDate = date.split('-')
             const day = splitedDate[2]
             const month = allMonths[Number(splitedDate[1])-1]

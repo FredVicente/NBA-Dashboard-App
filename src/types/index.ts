@@ -9,6 +9,13 @@ export type gameCardProps = {
     awayTeamLogo?:string
 }
 
+// DefaultPageData
+
+export type DefaultPageDataType = {
+    name: string;
+    imgUrl: string;
+}[]
+
 // Global state
 
 export type teamsType = {

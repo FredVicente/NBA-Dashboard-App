@@ -6,6 +6,7 @@ type individualCardprops = {
     name:string
     info:'team' | 'player'
     cardClickFunction:Function
+
 }
 
 export default function individualCard(props:individualCardprops){

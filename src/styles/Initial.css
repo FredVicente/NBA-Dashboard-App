@@ -1,5 +1,7 @@
 .initial{
     background-color: black;
+    min-width: 100vw;
+    max-width: 100vw;
 }
 
 .initial-container{
@@ -7,6 +9,8 @@
 
     margin: 0;
     padding: 0;
+
+    animation: showAll 4s forwards;
 }
 
 .initial-top{
@@ -47,4 +51,21 @@
 .initial-bottom img{
     max-height: 100%;
     max-width: 100%;
+}
+
+@keyframes showAll{
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+@media screen and (min-width:900px){
+    .initial{
+        min-width: 900px;
+        max-width: 900px;
+    }
 }

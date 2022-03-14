@@ -1,14 +1,3 @@
-export type gameCardProps = {
-    time:string
-    day:string
-    local:{
-        name?:string
-        city?:string
-    }
-    homeTeamLogo?:string
-    awayTeamLogo?:string
-}
-
 // Global state
 
 export type teamsType = {
@@ -29,7 +18,7 @@ export type teamsType = {
     "WikipediaWordMarkUrl":boolean
     "GlobalTeamID":number
     "NbaDotComTeamID":number
-}[]
+}
 
 export type stadiumsType = {
     "StadiumID": number,
@@ -43,7 +32,7 @@ export type stadiumsType = {
     "Capacity": number,
     "GeoLat": number,
     "GeoLong": number
-}[]
+}
 
 export type gamesType = {
     "GameID": number,
@@ -96,7 +85,7 @@ export type gamesType = {
         "AwayScore": number,
         "HomeScore": number
     }[]
-}[]
+}
 
 export type playersType = {
     "PlayerID": number,
@@ -148,11 +137,11 @@ export type playersType = {
     "UsaTodayHeadshotUpdated": string,
     "UsaTodayHeadshotNoBackgroundUpdated": string,
     "NbaDotComPlayerID": number
-}[]
+}
 
 export type stateType = {
-    teams:teamsType
-    games:gamesType,
-    stadiums:stadiumsType
-    players:playersType
+    teams:teamsType[]
+    games:gamesType[]
+    stadiums:stadiumsType[]
+    players:playersType[]
 }

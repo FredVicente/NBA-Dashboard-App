@@ -1,0 +1,16 @@
+.jersey-number{
+    transform: translateY(-24px);
+    background-color: #1D428A;
+    color: #fff;
+    border-radius: 50%;
+    border: #f7f7f7 1px solid;
+
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 12px;
+    margin: 0;
+}

@@ -3,11 +3,12 @@ import './index.css'
 
 type cardProps = {
     children:ReactNode
+    cardClickFunction?:Function
 }
 
 export function Card(props:cardProps){
     return(
-        <div className='card'>
+        <div className='card' onClick={() => {if(props.cardClickFunction) props.cardClickFunction()}}>
             {props.children}
         </div>
     )

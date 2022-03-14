@@ -1,0 +1,54 @@
+.team-infos{
+    width: 100%;
+    margin-top: 28px;
+
+    display: grid;
+}
+
+.team-infos .info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #f2f2f2;
+    padding: 8px;
+}
+
+.team-infos .info > h4{
+    font-size: 14px;
+}
+
+.team-infos .info > p{
+    font-size: 12px;
+}
+
+.roster-container{
+    margin-top: 24px;
+    padding: 12px;
+}
+
+.roster{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.roster-player{
+    font-size: 12px;
+    margin: 10px;
+    text-align: center;
+
+    border: solid 1px #e9e9e9;
+    border-radius: 3px;
+    padding: 5px;
+
+    max-width: 33%;
+
+    cursor: pointer;
+}
+
+.roster-player > img{
+    max-width: 50px;
+}

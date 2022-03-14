@@ -6,20 +6,22 @@ import { DashboardSection } from '../components/DashboardSection'
 import { Footer } from '../components/Footer/index'
 import { GameCard } from '../components/cards/GameCard'
 
-import { gameCardProps, stateType } from '../types/index'
+import { gamesType, stateType } from '../types/index'
 
 import '../styles/Home.css'
 
-import generateGameCard from '../services/generateGameCard'
 import filterArray from '../services/filterArray'
+import Loader from '../components/Loader'
 
 export default function Home() {
 
     const [allTeams, setAllTeams] = useState<string[][]>([])
     const [allPlayers, setAllPlayers] = useState<string[][]>([])
-    const [allGames, setAllGames] = useState<gameCardProps[]>([])
+    const [allGames, setAllGames] = useState<gamesType[]>([])
 
-    const reduxState:stateType = useSelector( state => state)
+    const [loadingGames, setLoadingGames] = useState(true)
+
+    const reduxState = useSelector( (state:stateType) => state)
 
     useEffect(() => {
         const teamsLogoUrl = reduxState.teams.slice(0, 30).map( team => {
@@ -33,13 +35,18 @@ export default function Home() {
 
     useEffect(() => {
         try{
-            const myGames = generateGameCard(reduxState.games, reduxState)
-            setAllGames(myGames)
+            setAllGames(reduxState.games)
         } catch(e){
             console.log('Deu erro', e)
             setAllGames([])
+            setLoadingGames(false)
         }
     }, [reduxState.games])
+
+    useEffect(() => {
+        if(allGames.length > 0)
+            setLoadingGames(false)
+    }, [allGames])
 
     useEffect(() => {
         const teamsLogoUrl = reduxState.players.slice(0, 20).map( player => {
@@ -53,47 +60,48 @@ export default function Home() {
 
     return(
         <div className="home page" >
-            <DashboardSection title="JOGOS DO DIA" viewMorePage="games">
-                {allGames.map( game => {
-                    return(
-                        <GameCard
-                            day={game.day}
-                            time={game.time}
-                            local={game.local}
-                            homeTeamLogo={game.homeTeamLogo}
-                            awayTeamLogo={game.awayTeamLogo}
-                        />
-                    )
-                })}
-            </DashboardSection>
+            <main>
+                <DashboardSection title="JOGOS DO DIA" viewMorePage="games">
+                    { allGames.length > 0 ?
+                        allGames.map( game => {
+                            return(
+                                <GameCard
+                                    allData={game}
+                                />
+                            )
+                        })
+                        : loadingGames ? [<Card><Loader/></Card>] : [<Card><p className='no-data-advice'>Não há nenhum jogo hoje</p></Card>]
+                    }
+                </DashboardSection>
 
-            <DashboardSection title='TIMES' viewMorePage="teams">
-                {allTeams.map( group => {
-                    return(
-                        <Card>
-                            {group.map( team => {
-                                return(
-                                    <img src={team} alt="" className='teams-logo'/>
-                                )
-                            })}
-                        </Card>
-                    )
-                })}
-            </DashboardSection>
+                <DashboardSection title='TIMES' viewMorePage="teams">
+                    {allTeams.length> 0 ? allTeams.map( group => {
+                        return(
+                            <Card>
+                                {group.map( teamLogo => {
+                                    return(
+                                        <img src={teamLogo} alt="" className='teams-logo'/>
+                                    )
+                                })}
+                            </Card>
+                        )
+                    }) : [<Card><Loader/></Card>]}
+                </DashboardSection>
 
-            <DashboardSection title='JOGADORES' viewMorePage="players">
-                {allPlayers.map( group => {
-                    return(
-                        <Card>
-                            {group.map( player => {
-                                return(
-                                    <img src={player} alt="" className='players-photo'/>
-                                )
-                            })}
-                        </Card>
-                    )
-                })}
-            </DashboardSection>
+                <DashboardSection title='JOGADORES' viewMorePage="players">
+                    {allPlayers.length > 0 ? allPlayers.map( group => {
+                        return(
+                            <Card>
+                                {group.map( player => {
+                                    return(
+                                        <img src={player} alt="" className='players-photo'/>
+                                    )
+                                })}
+                            </Card>
+                        )
+                    }) : [<Card><Loader/></Card>]}
+                </DashboardSection>
+            </main>
 
             <Footer page='home'/>
         </div>

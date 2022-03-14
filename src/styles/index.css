@@ -11,6 +11,11 @@
 
 body{
     font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: black;
 }
 
 body #root-{
@@ -19,6 +24,14 @@ body #root-{
     flex-direction: column;
     justify-content: center;
 }
+
+/* Barra de rolagem */
+
+body::-webkit-scrollbar{
+    width: 0px;
+}
+
+/*Swiper*/
 
 .swiper {
     height: 110%;

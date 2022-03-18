@@ -13,7 +13,7 @@ export default function Initial(){
             </div>
 
             <div className="initial-container initial-bottom">
-                <img src={'../src/images/background-nba.png'} alt="" />
+                <img src='https://ibb.co/Jy3bFQJ' alt="" />
 
                 <button onClick={() => navigate('/home')}>CLIQUE AQUI PARA INICIAR</button>
             </div>

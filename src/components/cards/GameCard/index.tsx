@@ -20,8 +20,10 @@ const getDay = (originalDate:string) => {
 
 const getTime = (originalDate:string) => {
     const splitedTime = originalDate.split('T')[1].split(':')
-    const hour = Number(splitedTime[0])+2
-    const time = `${hour >= 24 ? `0${hour - 24}` : hour}:${splitedTime[1]}`
+    const hourUTCminus3 = Number(splitedTime[0]) - 3
+    const hour = hourUTCminus3 < 0 ? hourUTCminus3 + 24 : hourUTCminus3
+
+    const time = `${hour}:${splitedTime[1]}`
 
     return time
 }
@@ -33,7 +35,7 @@ export function GameCard(props:{allData:gamesType}){
     const [logos, setLogos] = useState<logosType>()
     const [stadium, setStadium] = useState<stadiumsType>()
 
-    const { AwayTeam, HomeTeam, DateTime, StadiumID, Status } = props.allData
+    const { AwayTeam, HomeTeam, DateTime, StadiumID, Status, DateTimeUTC } = props.allData
 
     useEffect(() => {
         const homeTeamLogo = reduxState.teams.find( team => team.Key == HomeTeam)?.WikipediaLogoUrl
@@ -56,7 +58,7 @@ export function GameCard(props:{allData:gamesType}){
                 {Status == 'Scheduled' ?
                 (
                     <div className="content">
-                        <h4>{getDay(DateTime)} - {getTime(DateTime)}</h4>
+                        <h4>{getDay(DateTime)} - {getTime(DateTimeUTC)}</h4>
                         <p>{stadium?.Name}</p>
                     </div>
                 )

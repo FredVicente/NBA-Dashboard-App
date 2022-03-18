@@ -9,7 +9,7 @@ export default function Initial(){
     return(
         <div className='initial'>
             <div className="initial-container initial-top">
-                <img className='nba-logo' src={'../src/images/nba-logo.png'} alt="" />
+                <img className='nba-logo' src='https://i.ibb.co/51pV720/nba-logo.png' alt="" />
             </div>
 
             <div className="initial-container initial-bottom">

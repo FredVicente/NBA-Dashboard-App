@@ -25,7 +25,7 @@ export default function Header(props:headerProps){
                 <h3>{props.title}</h3>
             </div>
             <div className="right-content header-content">
-                <img src="../src/images/nba-large-logo.png" alt="" />
+                <img src="https://i.ibb.co/m488ndx/nba-large-logo.png" alt="" />
             </div>
         </header>
     )

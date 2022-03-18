@@ -49,11 +49,11 @@ export default function Home() {
     }, [allGames])
 
     useEffect(() => {
-        const teamsLogoUrl = reduxState.players.slice(0, 20).map( player => {
+        const playersPhotoUrl = reduxState.players.slice(0, 20).map( player => {
             return(player.PhotoUrl)
         })
         
-        const result = filterArray(teamsLogoUrl, 4)
+        const result = filterArray(playersPhotoUrl, 4)
         setAllPlayers(result)
 
     }, [reduxState.players])

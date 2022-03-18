@@ -23,7 +23,6 @@ export default function TeamsDetails(props:teamsDetailsProp){
     useEffect(() => {
         const myPlayers = reduxPlayers.filter( player => player.Team == Key)
         setTeamPlayers(myPlayers)
-        
     }, [props.allData])
 
     return(

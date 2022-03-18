@@ -41,7 +41,7 @@ function Games(){
 
         if(!date){
             const newDate = new Date()
-            const day = newDate.getDate() < 0 ? `0${newDate.getDate()}` : `0${newDate.getDate()}`
+            const day = newDate.getDate() < 0 ? `0${newDate.getDate()}` : `${newDate.getDate()}`
             const month = newDate.toLocaleString("en", {month: "2-digit"}).toUpperCase()
             const year = newDate.getFullYear()
 
